@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FirstDown.Cash - Interactive NFL Analytics</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .page-section { display: none; }
+    .chart-container { position: relative; width: 100%; max-width: 800px; margin-left: auto; margin-right: auto; height: 350px; max-height: 40vh; }
+  </style>
+</head>
+<body class="bg-black text-gray-100 antialiased">
+
+  <!-- NAV -->
+  <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-md shadow-lg py-4">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <div class="h-6 w-6 bg-orange-600 rounded-sm"></div>
+        <h1 class="text-2xl font-bold text-white tracking-tight">FirstDown.<span class="text-orange-600">Cash</span></h1>
+      </div>
+      <div id="nav-links" class="hidden md:flex items-center space-x-6">
+        <a href="#features" class="text-gray-400 hover:text-orange-600 transition duration-300">Features</a>
+        <a href="#research" class="text-gray-400 hover:text-orange-600 transition duration-300">Research</a>
+        <a href="#pricing" class="text-gray-400 hover:text-orange-600 transition duration-300">Pricing</a>
+        <a href="#about" class="text-gray-400 hover:text-orange-600 transition duration-300">About Us</a>
+      </div>
+      <button id="nav-action-btn" class="bg-orange-600 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-orange-500 transition duration-300 transform hover:scale-105">
+        Log In
+      </button>
+    </div>
+  </nav>
+
+  <!-- LANDING -->
+  <div id="landing-page" class="page-section">
+    <header class="relative overflow-hidden py-12 md:py-24 bg-gray-950 border-b-2 border-orange-600">
+      <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover opacity-20">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-american-football-player-running-4333-large.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="relative container mx-auto px-6 text-center z-10">
+        <h2 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4 tracking-tight">Elevate Your Prop Game.</h2>
+        <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto">Our unique software allows you to quickly analyze thousands of lines and find the props with the greatest value.</p>
+        <button class="auth-trigger bg-orange-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-orange-500 transition transform hover:scale-105 duration-300">Start Researching</button>
+      </div>
+    </header>
+
+    <!-- rest of landing content remains unchanged (features/pricing/etc) -->
+    <!-- (I kept your original markup for features, upcoming, research, pricing, about, privacy, footer) -->
+    <!-- ... (omitted here for brevity) ... -->
+    <!-- Copy the rest of your original landing sections here, unchanged. -->
+    <!-- For clarity, I'll keep the same content as your original. -->
+    <!-- FEATURES -->
+    <section id="features" class="py-16 md:py-24 bg-black">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">What You Get Today</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          <div class="bg-gray-950 p-8 rounded-xl shadow-lg border border-gray-800">
+            <div class="text-5xl mb-4">📊</div><h3 class="text-xl font-semibold mb-2 text-white">Statistical Insights</h3><p class="text-gray-400">Outliers and observations for all major prop markets.</p>
+          </div>
+          <div class="bg-gray-950 p-8 rounded-xl shadow-lg border border-gray-800">
+            <div class="text-5xl mb-4">📈</div><h3 class="text-xl font-semibold mb-2 text-white">Prop Line Updates</h3><p class="text-gray-400">Updated prop lines from popular books, in real-time.</p>
+          </div>
+          <div class="bg-gray-950 p-8 rounded-xl shadow-lg border border-gray-800">
+            <div class="text-5xl mb-4">🔍</div><h3 class="text-xl font-semibold mb-2 text-white">Advanced Visuals</h3><p class="text-gray-400">In-depth data analysis and compelling visualizations.</p>
+          </div>
+          <div class="bg-gray-950 p-8 rounded-xl shadow-lg border border-gray-800">
+            <div class="text-5xl mb-4">🏈</div><h3 class="text-xl font-semibold mb-2 text-white">Player Prop-Centric</h3><p class="text-gray-400">Focused analysis for a competitive edge.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- more landing sections... (pricing/about/privacy/footer etc) -->
+    <section class="py-16 md:py-24 bg-black">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">We're just getting started. Here’s what’s coming soon:</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-gray-950 p-6 rounded-xl shadow-lg border border-gray-800">
+            <h3 class="text-xl font-semibold text-white mb-2">Advanced Analytics</h3>
+            <ul class="list-disc list-inside text-gray-400 space-y-1">
+              <li>Trending insights</li>
+              <li>Thousands of props & games</li>
+              <li>Advanced data & visuals</li>
+              <li>Odds comparisons & line movement tracking</li>
+              <li>Injury reports</li>
+            </ul>
+          </div>
+          <div class="bg-gray-950 p-6 rounded-xl shadow-lg border border-gray-800">
+            <h3 class="text-xl font-semibold text-white mb-2">Real-Time Alerts</h3>
+            <ul class="list-disc list-inside text-gray-400 space-y-1">
+              <li>Real-time betting alerts & odds charts</li>
+              <li>EV+ bet indicators</li>
+              <li>Positive EV feed</li>
+              <li>Sharp book odds</li>
+            </ul>
+          </div>
+          <div class="bg-gray-950 p-6 rounded-xl shadow-lg border border-gray-800">
+            <h3 class="text-xl font-semibold text-white mb-2">Strategic Tools</h3>
+            <ul class="list-disc list-inside text-gray-400 space-y-1">
+              <li>Boost analysis</li>
+              <li>Middle betting</li>
+              <li>Arbitrage feed</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-gray-950 border-t-2 border-orange-600">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Upcoming Sports</h2>
+        <div class="flex flex-wrap justify-center items-center gap-6 md:gap-12">
+          <div class="flex flex-col items-center">
+            <div class="text-6xl mb-2">🏀</div><p class="text-lg text-gray-400">NBA</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="text-6xl mb-2">⚽</div><p class="text-lg text-gray-400">Soccer</p>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="text-6xl mb-2">🏏</div><p class="text-lg text-gray-400">Cricket</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research" class="py-16 md:py-24 bg-orange-600 text-gray-900">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-4">Daily Research</h2>
+        <p class="text-lg md:text-xl font-semibold mb-8">Daily Trends, Educational Resources, and Analytic Deep Dives</p>
+        <div class="flex flex-col items-center space-y-8">
+          <div class="relative w-full max-w-lg rounded-xl overflow-hidden shadow-2xl">
+            <img src="https://elitesportsny.com/app/uploads/2018/10/jamal_adams.jpg" alt="Football player" class="w-full h-auto object-cover">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="py-16 md:py-24 bg-gray-950 border-t-2 border-orange-600">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Early Access (Donation-Based)</h2>
+        <p class="text-lg md:text-xl text-gray-400 mb-8">Secure your spot and help us build the future of sports betting analytics.</p>
+
+        <div class="bg-gray-900 p-8 rounded-xl shadow-xl max-w-2xl mx-auto border border-gray-700">
+          <div id="spots-counter-container" class="mb-6">
+            <p class="text-lg md:text-xl font-semibold text-gray-300">
+              <span id="spots-left" class="text-orange-600 text-3xl font-bold">100</span> out of 100 spots remaining!
+            </p>
+            <div class="w-full bg-gray-700 rounded-full h-3.5 mt-2">
+              <div id="progress-bar" class="bg-orange-600 h-3.5 rounded-full" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <ul class="text-left text-gray-300 space-y-2 mb-8">
+            <li class="flex items-center gap-2"><div class="text-xl text-orange-600">🏆</div><span class="font-bold">Top 10 Donors</span> get lifetime access</li>
+            <li class="flex items-center gap-2"><div class="text-xl text-orange-600">⏳</div><span class="font-bold">Next 20 Donors</span> get 2-year access</li>
+            <li class="flex items-center gap-2"><div class="text-xl text-orange-600">✅</div><span class="font-bold">Remaining 70 Donors</span> get 1-year access (2025 season)</li>
+          </ul>
+
+          <button id="join-now-btn" class="bg-orange-600 text-white font-bold py-4 px-12 rounded-full shadow-lg hover:bg-orange-700 transition transform hover:scale-105 duration-300">
+            Join Now – Secure Your Spot
+          </button>
+        </div>
+
+        <div class="mt-12 text-center">
+          <h3 class="text-2xl font-bold text-white mb-4">Post-Beta Pricing</h3>
+          <div class="flex flex-col sm:flex-row justify-center items-center gap-8">
+            <div class="bg-gray-900 p-6 rounded-lg shadow-md border border-gray-700 w-full sm:w-auto">
+              <h4 class="text-xl font-semibold text-gray-300 mb-2">Monthly</h4>
+              <p class="text-3xl font-extrabold text-white">$15</p>
+            </div>
+            <div class="bg-gray-900 p-6 rounded-lg shadow-md border border-gray-700 w-full sm:w-auto">
+              <h4 class="text-xl font-semibold text-gray-300 mb-2">Yearly</h4>
+              <p class="text-3xl font-extrabold text-white">$75</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-16 md:py-24 bg-black border-t-2 border-orange-600">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">About Us</h2>
+        <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
+          We are a team of experienced data analysts and sports enthusiasts dedicated to providing you with an edge. Our early-access beta is designed to give you exclusive access to our cutting-edge tools while helping us refine the platform based on your feedback. Our mission is to empower sports bettors with the data and insights they need to make smarter, more confident decisions.
+        </p>
+      </div>
+    </section>
+
+    <section id="privacy" class="py-16 md:py-24 bg-gray-950 border-t-2 border-orange-600">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 text-center">Privacy Policy</h2>
+        <div class="prose prose-invert max-w-none">
+          <p>
+            Your privacy is important to us. This policy explains how we collect, use, and protect your information. By using our service, you agree to the collection and use of information in accordance with this policy.
+          </p>
+          <p>
+            <strong>Information Collection and Use:</strong> We collect several different types of information for various purposes to provide and improve our service to you. This includes data you provide directly to us (e.g., your email for a beta waitlist) and data collected automatically (e.g., usage statistics). We do not sell your personal data to third parties.
+          </p>
+          <p>
+            <strong>Data Security:</strong> We use commercially acceptable means to protect your personal data, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure.
+          </p>
+          <p>
+            <strong>Changes to This Privacy Policy:</strong> We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-black py-12">
+      <div class="container mx-auto px-6 text-center text-gray-400">
+        <p class="text-sm">&copy; 2025 FirstDown.Cash. All rights reserved.</p>
+        <div class="flex justify-center gap-4 mt-4 text-sm">
+          <a href="#privacy" class="hover:text-white">Privacy Policy</a>
+          <a href="#about" class="hover:text-white">About Us</a>
+          <a href="#" class="hover:text-white">Terms of Service</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- LOGIN PAGE (updated: email/password + register + anonymous) -->
+  <div id="login-page" class="page-section fixed inset-0 z-50 bg-black flex items-center justify-center p-4">
+    <div class="bg-gray-900 p-8 rounded-xl shadow-2xl w-full max-w-md text-center border-2 border-orange-600">
+      <h3 class="text-2xl font-bold text-white mb-4">Access the Dashboard</h3>
+      <p class="text-gray-400 mb-6">Sign in to access the dashboard. You may register a new account or sign-in anonymously for demo purposes.</p>
+
+      <div id="auth-msg" class="text-sm text-red-400 mb-4 hidden"></div>
+
+      <form id="login-form" class="space-y-4">
+        <input id="login-email" type="email" placeholder="Email" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg p-3" required>
+        <input id="login-password" type="password" placeholder="Password" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg p-3" required>
+        <button id="login-btn" type="submit" class="bg-orange-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-orange-500 transition duration-300 w-full">Log In</button>
+        <button id="register-btn" type="button" class="bg-gray-700 text-white font-bold py-2 px-4 rounded-full shadow-sm hover:bg-gray-600 w-full">Register</button>
+      </form>
+
+      <div class="mt-4 text-sm text-gray-400">or</div>
+
+      <button id="anon-login-btn" class="mt-4 bg-orange-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-orange-500 transition duration-300 w-full">Sign In Anonymously</button>
+
+      <button id="back-to-landing-btn" class="mt-4 text-gray-400 hover:text-white transition duration-300">&larr; Back to landing page</button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard-page" class="page-section flex flex-col h-screen bg-gray-950">
+    <main class="flex-grow p-6 overflow-y-auto">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-2">Player Analytics Dashboard</h1>
+      <p class="text-lg text-gray-400 mb-6">Select a player to see their performance trends and prop outcomes.</p>
+
+      <div class="mb-8 max-w-sm">
+        <label for="player-select" class="block text-sm font-medium text-gray-400 mb-2">Select Player</label>
+        <select id="player-select" class="w-full bg-gray-900 border-gray-700 text-white rounded-lg p-3 focus:ring-2 focus:ring-orange-600 focus:border-orange-600">
+          <option value="mahomes">Patrick Mahomes</option>
+          <option value="smith">Geno Smith</option>
+          <option value="purdy">Brock Purdy</option>
+        </select>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div class="bg-black p-6 rounded-2xl shadow-2xl border border-gray-800">
+          <h3 id="line-chart-title" class="text-2xl font-semibold text-white mb-4 text-center">Passing Yards Trend</h3>
+          <div class="chart-container">
+            <canvas id="player-line-chart"></canvas>
+          </div>
+        </div>
+        <div class="bg-black p-6 rounded-2xl shadow-2xl border border-gray-800">
+          <h3 id="doughnut-chart-title" class="text-2xl font-semibold text-white mb-4 text-center">Passing TDs (Line: 2.5)</h3>
+          <div class="chart-container">
+            <canvas id="player-doughnut-chart"></canvas>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+<script>
+  /* -----------------------
+     Frontend auth + app script
+     ----------------------- */
+  const API_BASE = '/api'; // <--- update if backend is hosted elsewhere
+  const COOKIE_SESSION_NAME = 'fd_session';
+  let currentUser = null;
+
+  // DOM references
+  const navActionBtn = document.getElementById('nav-action-btn');
+  const navLinks = document.getElementById('nav-links');
+  const authMsg = document.getElementById('auth-msg');
+  let lineChart, doughnutChart;
+
+  // Mock player data (unchanged)
+  const mockPlayerData = {
+    mahomes: { passingYards: [280, 310, 250, 350, 290, 330, 270, 400, 320, 300], passingTds: { line: 2.5, over: 7, under: 3 } },
+    smith:   { passingYards: [220, 240, 210, 260, 230, 280, 250, 290, 240, 270], passingTds: { line: 1.5, over: 6, under: 4 } },
+    purdy:   { passingYards: [260, 250, 290, 270, 310, 280, 240, 330, 290, 300], passingTds: { line: 2.5, over: 5, under: 5 } }
+  };
+  let spotsRemaining = 100;
+  const totalSpots = 100;
+
+  // ------------- auth API helpers -------------
+  async function api(path, options = {}) {
+    const res = await fetch(`${API_BASE}${path}`, {
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include', // important for cookie auth
+      ...options
+    });
+    const text = await res.text();
+    try { return { ok: res.ok, status: res.status, json: JSON.parse(text) }; } catch(e) { return { ok: res.ok, status: res.status, text }; }
+  }
+
+  async function checkAuth() {
+    const r = await api('/auth/status', { method: 'GET' });
+    if (r.ok && r.json && r.json.user) {
+      currentUser = r.json.user;
+      showPage('dashboard');
+    } else {
+      currentUser = null;
+      showPage('landing');
+    }
+    updateNav();
+  }
+
+  function updateNav() {
+    navActionBtn.innerText = currentUser ? 'Log Out' : 'Log In';
+    navLinks.style.display = currentUser ? 'none' : 'flex';
+  }
+
+  // ------------- auth UI actions -------------
+  async function handleLogin(email, password) {
+    authMsg.classList.add('hidden');
+    const r = await api('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) });
+    if (r.ok) {
+      currentUser = r.json.user;
+      updateNav();
+      showPage('dashboard');
+    } else {
+      authMsg.classList.remove('hidden');
+      authMsg.innerText = (r.json && r.json.error) ? r.json.error : 'Login failed';
+    }
+  }
+
+  async function handleRegister(email, password) {
+    authMsg.classList.add('hidden');
+    const r = await api('/auth/register', { method: 'POST', body: JSON.stringify({ email, password }) });
+    if (r.ok) {
+      currentUser = r.json.user;
+      updateNav();
+      showPage('dashboard');
+    } else {
+      authMsg.classList.remove('hidden');
+      authMsg.innerText = (r.json && r.json.error) ? r.json.error : 'Registration failed';
+    }
+  }
+
+  async function handleAnon() {
+    const r = await api('/auth/anon', { method: 'POST' });
+    if (r.ok) {
+      currentUser = r.json.user;
+      updateNav();
+      showPage('dashboard');
+    } else {
+      alert('Anonymous sign-in failed');
+    }
+  }
+
+  async function handleLogout() {
+    await api('/auth/logout', { method: 'POST' });
+    currentUser = null;
+    updateNav();
+    showPage('landing');
+  }
+
+  // ------------- spots updater (unchanged) -------------
+  function updateSpots() {
+    const spotsLeftEl = document.getElementById('spots-left');
+    const progressBarEl = document.getElementById('progress-bar');
+    const decreaseAmount = Math.floor(Math.random() * 5) + 1;
+    spotsRemaining = Math.max(0, spotsRemaining - decreaseAmount);
+    spotsLeftEl.textContent = spotsRemaining;
+    const progress = (spotsRemaining / totalSpots) * 100;
+    progressBarEl.style.width = `${progress}%`;
+    if (spotsRemaining > 0) setTimeout(updateSpots, 5000);
+  }
+
+  // ------------- charts (unchanged) -------------
+  function createLineChart(playerData) {
+    const ctx = document.getElementById('player-line-chart').getContext('2d');
+    const data = {
+      labels: Array.from({ length: 10 }, (_, i) => `Game ${i + 1}`),
+      datasets: [{ label: 'Passing Yards', data: playerData.passingYards, fill: false, borderColor: 'rgb(234, 88, 12)', tension: 0.1 }]
+    };
+    if (lineChart) lineChart.destroy();
+    lineChart = new Chart(ctx, { type: 'line', data, options: chartOptions('Passing Yards') });
+  }
+
+  function createDoughnutChart(playerData) {
+    const ctx = document.getElementById('player-doughnut-chart').getContext('2d');
+    const data = {
+      labels: ['Over', 'Under'],
+      datasets: [{ label: 'Passing TDs', data: [playerData.passingTds.over, playerData.passingTds.under], backgroundColor: ['rgb(234, 88, 12)', 'rgb(239, 68, 68)'], hoverOffset: 4 }]
+    };
+    if (doughnutChart) doughnutChart.destroy();
+    doughnutChart = new Chart(ctx, { type: 'doughnut', data, options: chartOptions(`Passing TDs (Line: ${playerData.passingTds.line})`) });
+  }
+
+  function chartOptions(titleText) {
+    return {
+      maintainAspectRatio: false, responsive: true,
+      plugins: { legend: { labels: { color: '#e5e7eb' } }, title: { display: false } },
+      scales: { y: { ticks: { color: '#9ca3af' }, grid: { color: '#374151' } }, x: { ticks: { color: '#9ca3af' }, grid: { color: '#374151' } } }
+    };
+  }
+
+  function updateDashboard(playerKey) {
+    const data = mockPlayerData[playerKey];
+    createLineChart(data);
+    createDoughnutChart(data);
+    document.getElementById('line-chart-title').innerText = `${playerKey.charAt(0).toUpperCase() + playerKey.slice(1)} - Passing Yards Trend`;
+    document.getElementById('doughnut-chart-title').innerText = `${playerKey.charAt(0).toUpperCase() + playerKey.slice(1)} - Passing TDs (Line: ${data.passingTds.line})`;
+  }
+
+  // ------------- page switcher (slightly updated) -------------
+  window.showPage = (pageId) => {
+    document.querySelectorAll('.page-section').forEach(p => p.style.display = 'none');
+    document.getElementById(`${pageId}-page`).style.display = pageId === 'dashboard' ? 'flex' : 'block';
+
+    if (pageId === 'dashboard') {
+      navActionBtn.innerText = 'Log Out';
+      navLinks.style.display = 'none';
+      updateDashboard(document.getElementById('player-select').value);
+    } else {
+      navActionBtn.innerText = 'Log In';
+      navLinks.style.display = 'flex';
+      if (pageId === 'landing') updateSpots();
+    }
+  };
+
+  // ------------- UI event wiring -------------
+  document.getElementById('player-select').addEventListener('change', (e) => updateDashboard(e.target.value));
+  document.querySelectorAll('.auth-trigger').forEach(btn => btn.addEventListener('click', () => showPage('login')));
+  document.getElementById('join-now-btn').addEventListener('click', handleJoinClick);
+
+  navActionBtn.addEventListener('click', () => {
+    if (currentUser) handleLogout();
+    else showPage('login');
+  });
+
+  // login form events
+  document.getElementById('login-form').addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+    handleLogin(email, password);
+  });
+  document.getElementById('register-btn').addEventListener('click', () => {
+    const email = document.getElementById('login-email').value.trim();
+    const password = document.getElementById('login-password').value;
+    if (!email || !password) { authMsg.classList.remove('hidden'); authMsg.innerText = 'Please provide email and password to register.'; return; }
+    handleRegister(email, password);
+  });
+
+  document.getElementById('anon-login-btn').addEventListener('click', () => handleAnon());
+  document.getElementById('back-to-landing-btn').addEventListener('click', () => showPage('landing'));
+
+  // join button modal (unchanged)
+  function handleJoinClick() {
+    const message = "Thank you for your interest! In a real-world scenario, you would now be redirected to a secure donation checkout page.";
+    const messageBox = document.createElement('div');
+    messageBox.className = 'fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-50';
+    messageBox.innerHTML = `
+      <div class="bg-gray-900 p-8 rounded-xl shadow-2xl w-full max-w-sm text-center border-2 border-orange-600">
+        <p class="text-white text-lg font-semibold mb-4">${message}</p>
+        <button class="bg-orange-600 text-white font-bold py-2 px-6 rounded-full hover:bg-orange-500 transition" onclick="this.closest('.fixed').remove()">
+          Close
+        </button>
+      </div>`;
+    document.body.appendChild(messageBox);
+  }
+
+  // initialize
+  window.addEventListener('DOMContentLoaded', async () => {
+    await checkAuth(); // decide which page to show
+  });
+</script>
+</body>
+</html>
