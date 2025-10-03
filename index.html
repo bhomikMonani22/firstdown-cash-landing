@@ -15,7 +15,6 @@
 </head>
 <body class="bg-black text-gray-100 antialiased">
 
-  <!-- NAV -->
   <nav class="sticky top-0 z-50 bg-black/80 backdrop-blur-md shadow-lg py-4">
     <div class="container mx-auto px-6 flex justify-between items-center">
       <div class="flex items-center space-x-2">
@@ -28,13 +27,12 @@
         <a href="#pricing" class="text-gray-400 hover:text-orange-600 transition duration-300">Pricing</a>
         <a href="#about" class="text-gray-400 hover:text-orange-600 transition duration-300">About Us</a>
       </div>
-      <a href="https://nfl-props-app.vercel.app/login" class="bg-orange-600 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-orange-500 transition duration-300 transform hover:scale-105">
+      <a href="https://nfl-props-app.vercel.app/login" id="nav-action-btn" class="bg-orange-600 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-orange-500 transition duration-300 transform hover:scale-105">
         Log In
       </a>
     </div>
   </nav>
 
-  <!-- LANDING -->
   <div id="landing-page" class="page-section">
     <header class="relative overflow-hidden py-12 md:py-24 bg-gray-950 border-b-2 border-orange-600">
       <video autoplay muted loop class="absolute inset-0 w-full h-full object-cover opacity-20">
@@ -44,15 +42,10 @@
       <div class="relative container mx-auto px-6 text-center z-10">
         <h2 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-4 tracking-tight">Elevate Your Prop Game.</h2>
         <p class="text-lg md:text-xl text-gray-400 mb-8 max-w-2xl mx-auto">Our unique software allows you to quickly analyze thousands of lines and find the props with the greatest value.</p>
-         <a href="https://nfl-props-app.vercel.app/login" class="bg-orange-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-orange-500 transition transform hover:scale-105 duration-300">Start Researching</a>      </div>
+        <a href="https://nfl-props-app.vercel.app/login" class="bg-orange-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-orange-500 transition transform hover:scale-105 duration-300">Start Researching</a>
+      </div>
     </header>
 
-    <!-- rest of landing content remains unchanged (features/pricing/etc) -->
-    <!-- (I kept your original markup for features, upcoming, research, pricing, about, privacy, footer) -->
-    <!-- ... (omitted here for brevity) ... -->
-    <!-- Copy the rest of your original landing sections here, unchanged. -->
-    <!-- For clarity, I'll keep the same content as your original. -->
-    <!-- FEATURES -->
     <section id="features" class="py-16 md:py-24 bg-black">
       <div class="container mx-auto px-6">
         <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">What You Get Today</h2>
@@ -73,7 +66,6 @@
       </div>
     </section>
 
-    <!-- more landing sections... (pricing/about/privacy/footer etc) -->
     <section class="py-16 md:py-24 bg-black">
       <div class="container mx-auto px-6">
         <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-12">We're just getting started. Here’s what’s coming soon:</h2>
@@ -221,30 +213,6 @@
     </footer>
   </div>
 
-  <!-- LOGIN PAGE (updated: email/password + register + anonymous) -->
-  <div id="login-page" class="page-section fixed inset-0 z-50 bg-black flex items-center justify-center p-4">
-    <div class="bg-gray-900 p-8 rounded-xl shadow-2xl w-full max-w-md text-center border-2 border-orange-600">
-      <h3 class="text-2xl font-bold text-white mb-4">Access the Dashboard</h3>
-      <p class="text-gray-400 mb-6">Sign in to access the dashboard. You may register a new account or sign-in anonymously for demo purposes.</p>
-
-      <div id="auth-msg" class="text-sm text-red-400 mb-4 hidden"></div>
-
-      <form id="login-form" class="space-y-4">
-        <input id="login-email" type="email" placeholder="Email" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg p-3" required>
-        <input id="login-password" type="password" placeholder="Password" class="w-full bg-gray-800 border border-gray-700 text-white rounded-lg p-3" required>
-        <button id="login-btn" type="submit" class="bg-orange-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-orange-500 transition duration-300 w-full">Log In</button>
-        <button id="register-btn" type="button" class="bg-gray-700 text-white font-bold py-2 px-4 rounded-full shadow-sm hover:bg-gray-600 w-full">Register</button>
-      </form>
-
-      <div class="mt-4 text-sm text-gray-400">or</div>
-
-      <button id="anon-login-btn" class="mt-4 bg-orange-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-orange-500 transition duration-300 w-full">Sign In Anonymously</button>
-
-      <button id="back-to-landing-btn" class="mt-4 text-gray-400 hover:text-white transition duration-300">&larr; Back to landing page</button>
-    </div>
-  </div>
-
-  <!-- DASHBOARD -->
   <div id="dashboard-page" class="page-section flex flex-col h-screen bg-gray-950">
     <main class="flex-grow p-6 overflow-y-auto">
       <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-2">Player Analytics Dashboard</h1>
@@ -287,7 +255,6 @@
   // DOM references
   const navActionBtn = document.getElementById('nav-action-btn');
   const navLinks = document.getElementById('nav-links');
-  const authMsg = document.getElementById('auth-msg');
   let lineChart, doughnutChart;
 
   // Mock player data (unchanged)
@@ -324,47 +291,12 @@
 
   function updateNav() {
     navActionBtn.innerText = currentUser ? 'Log Out' : 'Log In';
+    // When logged in, the link will act as a logout button. When logged out, it's a standard link.
+    navActionBtn.href = currentUser ? '#' : 'https://nfl-props-app.vercel.app/login';
     navLinks.style.display = currentUser ? 'none' : 'flex';
   }
 
   // ------------- auth UI actions -------------
-  async function handleLogin(email, password) {
-    authMsg.classList.add('hidden');
-    const r = await api('/auth/login', { method: 'POST', body: JSON.stringify({ email, password }) });
-    if (r.ok) {
-      currentUser = r.json.user;
-      updateNav();
-      showPage('dashboard');
-    } else {
-      authMsg.classList.remove('hidden');
-      authMsg.innerText = (r.json && r.json.error) ? r.json.error : 'Login failed';
-    }
-  }
-
-  async function handleRegister(email, password) {
-    authMsg.classList.add('hidden');
-    const r = await api('/auth/register', { method: 'POST', body: JSON.stringify({ email, password }) });
-    if (r.ok) {
-      currentUser = r.json.user;
-      updateNav();
-      showPage('dashboard');
-    } else {
-      authMsg.classList.remove('hidden');
-      authMsg.innerText = (r.json && r.json.error) ? r.json.error : 'Registration failed';
-    }
-  }
-
-  async function handleAnon() {
-    const r = await api('/auth/anon', { method: 'POST' });
-    if (r.ok) {
-      currentUser = r.json.user;
-      updateNav();
-      showPage('dashboard');
-    } else {
-      alert('Anonymous sign-in failed');
-    }
-  }
-
   async function handleLogout() {
     await api('/auth/logout', { method: 'POST' });
     currentUser = null;
@@ -424,45 +356,32 @@
   // ------------- page switcher (slightly updated) -------------
   window.showPage = (pageId) => {
     document.querySelectorAll('.page-section').forEach(p => p.style.display = 'none');
-    document.getElementById(`${pageId}-page`).style.display = pageId === 'dashboard' ? 'flex' : 'block';
+    const page = document.getElementById(`${pageId}-page`);
+    if(page) {
+      page.style.display = pageId === 'dashboard' ? 'flex' : 'block';
+    }
 
     if (pageId === 'dashboard') {
-      navActionBtn.innerText = 'Log Out';
-      navLinks.style.display = 'none';
       updateDashboard(document.getElementById('player-select').value);
-    } else {
-      navActionBtn.innerText = 'Log In';
-      navLinks.style.display = 'flex';
-      if (pageId === 'landing') updateSpots();
+    } else if (pageId === 'landing') {
+      updateSpots();
     }
+    updateNav();
   };
 
   // ------------- UI event wiring -------------
   document.getElementById('player-select').addEventListener('change', (e) => updateDashboard(e.target.value));
-  document.querySelectorAll('.auth-trigger').forEach(btn => btn.addEventListener('click', () => showPage('login')));
   document.getElementById('join-now-btn').addEventListener('click', handleJoinClick);
 
-  navActionBtn.addEventListener('click', () => {
-    if (currentUser) handleLogout();
-    else showPage('login');
+  navActionBtn.addEventListener('click', (e) => {
+    if (currentUser) {
+        e.preventDefault(); // Prevent navigation if logged in
+        handleLogout();
+    }
+    // If not logged in, the default link behavior will occur
   });
 
-  // login form events
-  document.getElementById('login-form').addEventListener('submit', (ev) => {
-    ev.preventDefault();
-    const email = document.getElementById('login-email').value.trim();
-    const password = document.getElementById('login-password').value;
-    handleLogin(email, password);
-  });
-  document.getElementById('register-btn').addEventListener('click', () => {
-    const email = document.getElementById('login-email').value.trim();
-    const password = document.getElementById('login-password').value;
-    if (!email || !password) { authMsg.classList.remove('hidden'); authMsg.innerText = 'Please provide email and password to register.'; return; }
-    handleRegister(email, password);
-  });
-
-  document.getElementById('anon-login-btn').addEventListener('click', () => handleAnon());
-  document.getElementById('back-to-landing-btn').addEventListener('click', () => showPage('landing'));
+  // REMOVED: All event listeners for the old login form
 
   // join button modal (unchanged)
   function handleJoinClick() {
